@@ -41,3 +41,8 @@
   align-items: center;
   justify-content: center;
 }
+
+.buttons-div {
+  border: 1px solid gray;
+  justify-content: space-around;
+}

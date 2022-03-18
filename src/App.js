@@ -33,12 +33,22 @@ function App() {
       });
     });
   };
+
+  const deleteContact = (id) => {
+    setContacts((previousContacts) => {
+      return previousContacts.filter((contact) => {
+        return contact.id !== id;
+      })
+    });
+  }
   return (
     <div className="App">
       <h1>IronContacts</h1>
+      <div className="buttons-div">
       <button onClick={addContact}>Add Random Contact</button>
       <button onClick={sortPopularity}>Sort by popularity</button>
       <button onClick={sortName}>Sort by name</button>
+      </div>
       <table className="table">
         <tr>
           <th>Picture</th>
@@ -46,6 +56,7 @@ function App() {
           <th>Popularity</th>
           <th>Won an Oscar</th>
           <th>Won an Emmy</th>
+          <th>Actions</th>
         </tr>
         {contacts.map((contact) => (
           <tr>
@@ -54,8 +65,9 @@ function App() {
             </td>
             <td>{contact.name}</td>
             <td>{contact.popularity}</td>
-            <td>{contact.wonOscar ? "trophy" : " "}</td>
-            <td>{contact.wonEmmy ? "trophy" : " "}</td>
+            <td>{contact.wonOscar ? "🏆" : " "}</td>
+            <td>{contact.wonEmmy ? "🌟" : " "}</td>
+            <td><button onClick={() => deleteContact(contact.id)}>Delete</button></td>
           </tr>
         ))}
       </table>
